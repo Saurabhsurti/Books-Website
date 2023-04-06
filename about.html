@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Books</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="Style.css" />
+    <link rel="stylesheet" href="mobile-style.css">
+
+    <link rel="shortcut icon" href="#">
+
+    <style>
+        .loader-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 10000;
+            background: #f7f7f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-container.active {
+            display: none;
+        }
+
+        .loader-container img {
+            height: 10rem;
+        }
+
+
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .custom-padding {
+            padding: 45px 0;
+        }
+
+        .socials a {
+            line-height: 30px;
+            text-align: center;
+            border-radius: 50%;
+            margin: 5px;
+            color: #fff;
+            display: inline-block;
+            border: 1px solid #fff;
+            height: 30px;
+            width: 30px;
+        }
+
+        .team-area h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-top: 15px;
+            color: #000;
+        }
+
+        .team-area h2 span {
+            display: block;
+            font-weight: 300;
+            margin-top: 10px;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .socials {
+            margin-top: -27px;
+            position: relative;
+            z-index: 2;
+            border-radius: 25px;
+            background: orange;
+            text-align: center;
+            padding: 5px;
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+
+        .socials a:hover {
+            background: #fff;
+            color: #000;
+            transition: .7s;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .team-area {
+                margin-bottom: 30px;
+            }
+
+            .team-area img {
+                width: 100%;
+            }
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            .team-area {
+                margin-bottom: 30px;
+            }
+
+            .team-area img {
+                width: 100%;
+            }
+        }
+
+        #s {
+            margin-top: 20px;
+        }
+
+        .btn.btn-outline-primary:hover,
+        .bg-primary {
+            background-color: #0cb4ce !important;
+        }
+
+        .section-medium {
+            padding: 55px 0px;
+        }
+
+        .testimonial-four blockquote:hover::after,
+        .section-arrow-primary-color.section-arrow--bottom-center:after {
+            border-right-color: #0cb4ce;
+        }
+
+        .section-arrow-primary-color.section-arrow--bottom-center:after {
+            background-color: #0cb4ce;
+            border-right-color: #0cb4ce;
+            border-bottom-color: #0cb4ce;
+        }
+
+        .section-arrow--bottom-center:after {
+            z-index: 1;
+            position: absolute;
+            left: 50%;
+            margin-left: -15px;
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            width: 30px;
+            height: 30px;
+            border-right: 1px solid #262626;
+            border-bottom: 1px solid #262626;
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+            background-color: #262626;
+        }
+
+        .text-white h1,
+        .text-white h2,
+        .text-white h3,
+        .text-white h4,
+        .text-white h5,
+        .text-white h6 {
+            color: white !important;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-top: 0.45em;
+            margin-bottom: 0.35em;
+            color: #303133;
+            font-family: Poppins;
+            letter-spacing: -0.02em;
+        }
+
+        .section-sub-title {
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 400;
+            font-family: Poppins;
+        }
+
+        .section-arrow-primary-color.section-arrow--bottom-center:after {
+            border-bottom-color: #0cb4ce;
+        }
+
+        .section-arrow-primary-color.section-arrow--bottom-center:after {
+            background-color: #0cb4ce;
+        }
+
+        .special-heading.line span:before,
+        .special-heading.line span:after,
+        .footer.footer-minimal,
+        .t-bordered {
+            border-top-color: #eaeaea;
+        }
+
+        .t-bordered {
+            border-top: 1px solid #eaeaea;
+        }
+
+        .section-primary {
+            padding: 75px 0px;
+        }
+
+        section {
+            position: relative;
+        }
+
+
+
+        .testimonial-two {
+            padding: 20px;
+            border: 2px solid #0cb4ce;
+            border-radius: 2px;
+        }
+
+
+        .testimonial-two blockquote p:before {
+            font-family: 'Playfair Display';
+            font-size: 54px;
+            color: #0cb4ce;
+            font-weight: 900;
+            left: 10px;
+            color: #FFF;
+            content: "“";
+            font-style: normal;
+            line-height: 1;
+            position: absolute;
+            top: 5px;
+            font-size: 45px;
+        }
+
+        .testimonial-two blockquote p:after {
+            font-family: 'Playfair Display';
+            font-size: 54px;
+            color: #0cb4ce;
+            content: "”";
+            font-size: 80px;
+            font-style: normal;
+            line-height: 1;
+            position: absolute;
+            bottom: -0.5em;
+            right: 10px;
+            font-weight: 900;
+            transform: scaleY(-1);
+            font-size: 45px;
+            bottom: -5px;
+        }
+
+
+        .testimonial-two blockquote {
+            padding: 15px 15px 15px 48px;
+            position: relative;
+        }
+
+        .testimonial-two blockquote p:before,
+        .testimonial-two blockquote p:after {
+            color: #0cb4ce;
+            font-weight: 900;
+        }
+
+        .testimonial-two blockquote p {
+            font-size: inherit;
+            font-weight: inherit;
+        }
+
+        .testimonial-two .testimonial-author p {
+            color: #999;
+            margin: 0 0 0 25px;
+            text-align: left;
+        }
+
+        .testimonial-two .testimonial-author strong {
+            display: block;
+            padding-top: 10px;
+            margin-bottom: -2px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .testimonial-two .testimonial-author span {
+            color: #666;
+            display: block;
+            font-size: 12px;
+        }
+
+        .testimonial-two .testimonial-author .testimonial-author-thumbnail {
+            float: left;
+            margin-right: 15px;
+            width: auto;
+        }
+
+        .testimonial-two .testimonial-author img {
+            max-width: 55px;
+        }
+
+        .testimonial-two .testimonial-author {
+            margin-left: 12px;
+            margin-bottom: 15px;
+        }
+
+
+        .testimonial-two .owl-theme .owl-nav.disabled+.owl-dots {
+            margin-top: 0px;
+        }
+
+        .testimonial-two .owl-theme .owl-dots {
+            text-align: left;
+            margin-left: 50px;
+        }
+
+        .testimonial-two .owl-carousel .owl-dots .owl-dot.active span,
+        .testimonial-two .owl-carousel .owl-dots .owl-dot:hover span {
+            border-color: #0cb4ce;
+        }
+
+        .testimonial-two .owl-carousel .owl-dots .owl-dot.active span:before,
+        .testimonial-two .owl-carousel .owl-dots .owl-dot:hover span:before {
+            background-color: #0cb4ce;
+        }
+
+
+
+
+        .testimonial-three .testimonial-image {
+            float: left;
+            margin: 0 20px 0 0;
+            width: 80px;
+            height: 80px;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .testimonial-three .testimonial-content {
+            overflow: hidden;
+        }
+
+        .testimonial-three .testimonial-meta {
+            position: relative;
+            overflow: hidden;
+            margin-left: 100px;
+        }
+
+
+        .testimonial-three .testimonial-name {
+            display: block;
+        }
+
+
+        .testimonial-three .testimonial-three-col {
+            padding-bottom: 35px;
+        }
+
+        .testimonial-three .testimonial-three-col {
+            border-right-style: dashed;
+            border-right-width: 1px;
+            border-bottom-style: dashed;
+            border-bottom-width: 1px;
+            border-right-color: #ddd;
+            border-bottom-color: #ddd;
+            padding: 25px;
+        }
+
+        .testimonial-three .testimonial-three-col:hover {
+            background-color: #f7f7f7;
+        }
+
+        .alternate-color .testimonial-three .testimonial-three-col:hover {
+            background-color: white;
+        }
+
+        .testimonial-three.testimonial-three--col-two .testimonial-three-col:nth-child(2n) {
+            border-right: none;
+        }
+
+        .testimonial-three.testimonial-three--col-two .testimonial-three-col:nth-last-child(-n+2),
+        .testimonial-three.testimonial-three--col-two .testimonial-three-col:last-child {
+            border-bottom: none;
+        }
+
+        .testimonial-three.testimonial-three--col-three .testimonial-three-col:nth-child(3n) {
+            border-right: none;
+        }
+
+        .testimonial-three.testimonial-three--col-three .testimonial-three-col:nth-last-child(-n+3),
+        .testimonial-three.testimonial-three--col-three .testimonial-three-col:nth-last-child(-n+2),
+        .testimonial-three.testimonial-three--col-three .testimonial-three-col:last-child {
+            border-bottom: none;
+        }
+
+
+
+
+
+
+
+        .testimonial-four .testimonial-author .testimonial-author-thumbnail {
+            float: left;
+            margin-right: 15px;
+            width: auto;
+        }
+
+        .testimonial-four .testimonial-author img {
+            max-width: 55px;
+        }
+
+        .testimonial-four .testimonial-author strong {
+            display: block;
+            padding-top: 10px;
+            margin-bottom: -2px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .testimonial-four .testimonial-author span {
+            color: #666;
+            display: block;
+            font-size: 12px;
+        }
+
+        .testimonial-four blockquote {
+            padding: 30px;
+            width: 100%;
+            border-radius: 4px;
+            position: relative;
+            margin-bottom: 20px;
+            padding-bottom: 25px;
+            border: 2px solid #eaeaea;
+        }
+
+        .testimonial-four blockquote::after {
+            content: "";
+            border-right: 2px solid #eaeaea;
+            border-bottom: 2px solid #eaeaea;
+            -webkit-transform: rotate(55deg);
+            -moz-transform: rotate(55deg);
+            -ms-transform: rotate(55deg);
+            -o-transform: rotate(55deg);
+            transform: rotate(55deg);
+            position: absolute;
+            left: 55px;
+            bottom: -12px;
+            width: 15px;
+            height: 21px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .testimonial-four .owl-theme .owl-nav.disabled+.owl-dots {
+            position: absolute;
+            float: right;
+            text-align: right;
+            right: 3px;
+            bottom: 40px;
+        }
+
+        .testimonial-four .testimonial-author {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-four blockquote:hover::after {
+            border-right: 2px solid #0cb4ce;
+            border-bottom: 2px solid #0cb4ce;
+        }
+
+        .testimonial-four blockquote:hover {
+            border: 2px solid #0cb4ce;
+        }
+
+
+
+
+
+        .testimonial-five blockquote p {
+            font-weight: 400;
+            font-size: 14.58px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .testimonial-five .testimonial-author .testimonial-author-thumbnail {
+            float: left;
+            margin-right: 15px;
+            width: auto;
+        }
+
+        .testimonial-five .testimonial-author img {
+            max-width: 55px;
+        }
+
+        .testimonial-five .testimonial-author strong {
+            display: block;
+            padding-top: 10px;
+            margin-bottom: -2px;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .testimonial-five .testimonial-author span {
+            color: #666;
+            display: block;
+            font-size: 12px;
+        }
+
+        .testimonial-five blockquote {
+            padding: 32px 41px 37px;
+            width: 100%;
+            border-radius: 4px;
+            position: relative;
+            margin-bottom: 30px;
+            border: 0px solid #eaeaea;
+            background-color: #f7f7f7;
+        }
+
+        .testimonial-five blockquote::after {
+            content: "";
+            border-right: 0px solid #eaeaea;
+            border-bottom: 0px solid #eaeaea;
+            -webkit-transform: rotate(55deg);
+            -moz-transform: rotate(55deg);
+            -ms-transform: rotate(55deg);
+            -o-transform: rotate(55deg);
+            transform: rotate(55deg);
+            position: absolute;
+            left: 55px;
+            bottom: -10px;
+            width: 15px;
+            height: 21px;
+            overflow: hidden;
+            background: #f7f7f7;
+        }
+
+        .testimonial-five.testimonial-light blockquote {
+            background-color: white;
+        }
+
+        .testimonial-five.testimonial-light blockquote::after {
+            background: white;
+        }
+
+
+        .testimonial-five .owl-theme .owl-nav.disabled+.owl-dots {
+            position: absolute;
+            float: right;
+            text-align: right;
+            right: 3px;
+            bottom: 40px;
+        }
+
+        .testimonial-five .testimonial-author {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-five blockquote:before {
+            content: "“";
+            speak-as: none;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-size: 170px;
+            color: rgba(189, 189, 189, 0.2);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+        .modal-backdrop {
+            z-index: -1;
+        }
+
+        head,
+        body {
+            background-color: lightcyan
+        }
+
+        .card {
+            cursor: pointer
+        }
+
+        .hd {
+            font-size: 25px;
+            font-weight: 550
+        }
+
+        .card.hover,
+        .card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .2)
+        }
+
+        .img {
+            margin-bottom: 35px;
+            -webkit-filter: drop-shadow(5px 5px 5px #222);
+            filter: drop-shadow(5px 5px 5px #222)
+        }
+
+        .card-title {
+            font-weight: 600
+        }
+
+        button.focus,
+        button:focus {
+            outline: 0;
+            box-shadow: none !important
+        }
+
+        .ft {
+            margin-top: 25px
+        }
+
+        .chk {
+            margin-bottom: 5px
+        }
+
+        .rck {
+            margin-top: 20px;
+            padding-bottom: 15px
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <header>
+        <div class="container-fluid p-0 bg-dark">
+            <nav class="navbar navbar-expand-lg fixed-top bg-dark">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-book-reader fa-2x mx-3"></i>Books</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-right text-light"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="mr-auto"></div>
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">HOME
+                                <span class="sr-only"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="store.html">STORE</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="service.html">OUR SERVICES</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <div class="dropdown">
+                                <a href="#" class="nav-link">BLOGS</a>
+                                <div class="dropdown-content">
+                                    <a href="blog.html">BLOG PAGE</a>
+                                    <a href="blog.html">BLOG DETAILS</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">ABOUT US</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">CONTACT US</a>
+                        </li>
+
+                    </ul>
+                    <div class="icons text-white bg-dark">
+                        <a href="#" id="search-btn" class="fas fa-search p-2"></a>
+                        <a href="blog.html" class="fas fa-heart p-2"></a>
+                        <a href="store.html" class="fas fa-shopping-cart p-2"></a>
+                        <a href="#" id="login-btn" class="fas fa-user p-2" data-toggle="modal"
+                            data-target="#myModal"></a>
+                    </div>
+
+
+                    <!-- The Modal -->
+                    <div class="modal" id="myModal">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title" style="padding-left: 42%;">Sign-in Form</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <section class="vh-100">
+                                        <div class="container py-5 h-100">
+                                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                                                    <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                                                        <div class="card-body p-5 text-center">
+
+                                                            <div class="mb-md-5 mt-md-4 pb-5">
+
+                                                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                                                                <p class="text-white-50 mb-5">Please enter your login
+                                                                    and password!</p>
+
+                                                                    <form action="#" method="post" onsubmit="fun()">
+                                                                        <div class="form-outline form-white mb-4">
+                                                                          <input type="text" id="typeEmailX" class="form-control form-control-lg" />
+                                                                          <label class="form-label" for="typeEmailX">Email</label>
+                                                                        </div>
+                                      
+                                                                        <div class="form-outline form-white mb-4">
+                                                                          <input type="password" id="typePasswordX" class="form-control form-control-lg" />
+                                                                          <label class="form-label" for="typePasswordX">Password</label>
+                                                                        </div>
+                                      
+                                                                        <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a>
+                                                                        </p>
+                                      
+                                                                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                                                                    </form>
+                                                                <div
+                                                                    class="d-flex justify-content-center text-center mt-4 pt-1">
+                                                                    <a href="#!" class="text-white"><i
+                                                                            class="fab fa-facebook-f fa-lg"></i></a>
+                                                                    <a href="#!" class="text-white"><i
+                                                                            class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                                                                    <a href="#!" class="text-white"><i
+                                                                            class="fab fa-google fa-lg"></i></a>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div>
+                                                                <p class="mb-0">Don't have an account? <a href="#!"
+                                                                        data-toggle="modal" data-target="#signup"
+                                                                        class="text-white-50 fw-bold">Sign Up</a>
+                                                                </p>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal" id="signup" style="width:1500px; height:1000px;">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title text-center" style="padding-left: 42%;">Sign-up Form</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <section class="vh-100" style="background-color: #eee;">
+                                        <div class="container h-100">
+                                            <div class="row d-flex justify-content-center align-items-center h-100">
+                                                <div class="col-lg-12 col-xl-11">
+                                                    <div class="card text-black" style="border-radius: 25px;">
+                                                        <div class="card-body p-md-5">
+                                                            <div class="row justify-content-center">
+                                                                <div
+                                                                    class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                                                                    <p
+                                                                        class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                                                                        Sign up</p>
+
+                                                                        <form class="mx-1 mx-md-4" onsubmit="fun1()">
+
+                                                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                                              <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                                              <div class="form-outline flex-fill mb-0">
+                                                                                <input type="text" id="form3Example1c" class="form-control" />
+                                                                                <label class="form-label" for="form3Example1c">Your Name</label>
+                                                                              </div>
+                                                                            </div>
+                                        
+                                                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                                              <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                                                              <div class="form-outline flex-fill mb-0">
+                                                                                <input type="email" id="form3Example3c" class="form-control" />
+                                                                                <label class="form-label" for="form3Example3c">Your Email</label>
+                                                                              </div>
+                                                                            </div>
+                                        
+                                                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                                              <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                                              <div class="form-outline flex-fill mb-0">
+                                                                                <input type="password" id="form3Example4c" class="form-control" />
+                                                                                <label class="form-label" for="form3Example4c" id="pa2">Password</label>
+                                                                              </div>
+                                                                            </div>
+                                        
+                                                                            <div class="d-flex flex-row align-items-center mb-4">
+                                                                              <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                                                                              <div class="form-outline flex-fill mb-0">
+                                                                                <input type="password" id="form3Example4cd" class="form-control" />
+                                                                                <label class="form-label" id="pa3" for="form3Example4cd">Repeat your password</label>
+                                                                              </div>
+                                                                            </div>
+                                        
+                                                                            <div class="form-check d-flex justify-content-center mb-5">
+                                                                              <label><input class="form-check-input me-2 p-4" type="checkbox" id="form2Example3c" />
+                                                                                I agree all statements in <a href="#!">Terms of service</a>
+                                                                              </label>
+                                                                            </div>
+                                        
+                                                                            <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                                                              <a href="index.html"><input type="submit"
+                                                                                  class="btn btn-primary btn-lg" value="Register"/></a>
+                                                                            </div>
+                                        
+                                                                        </form>
+
+                                                                </div>
+                                                                <div
+                                                                    class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                                                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                                                                        class="img-fluid" alt="Sample image">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </nav>
+        </div>
+        <br>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-7 col-sm-12">
+                    <h6>AUTHOR: SAURABH SURTI</h6>
+                    <h1>EXCITING ADVENTURE</h1>
+                    <p>
+                        Books are a great way to improve yourself and better understand the world around you. Reading can help you learn more about topics that you are interested in.
+                    </p>
+                    <button class="btn btn-light px-5 py-2 primary-btn">
+                        Order Now
+                    </button>
+                </div>
+                <div class="col-md-5 col-sm-12  h-25">
+                    <img src="assets/header-img.png" alt="Book" />
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div style="margin:20px;">
+            <h1 class="display-1 text-center  text-white" style="background-color:green;">About Us Page</h1>
+        </div>
+
+        <div class="about-section margin-top:20px; container" style="background-color: orange;">
+            <h1 class="text-center">About Us</h1>
+        </div>
+
+        <p class="text-dark container" style="text-indent: 2rem; border: 2px solid black; color:black;">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates veritatis nostrum assumenda blanditiis
+            corrupti nulla maxime ipsam impedit eligendi, magni aliquam hic distinctio aspernatur? Quibusdam illo odio
+            soluta quam sed dolorum tenetur ipsam, in at minus natus, repudiandae sequi aut qui rerum ratione nemo.
+            Exercitationem delectus sed quos eligendi iste mollitia eos voluptates esse tenetur temporibus, repellat
+            culpa laudantium vero possimus similique illum soluta nisi in harum recusandae, ab cum? Consectetur nam
+            expedita maxime veritatis! Dolor accusamus sunt suscipit, nulla nisi, delectus earum minima quae voluptas,
+            necessitatibus placeat quam. Reprehenderit beatae quia quisquam illum culpa explicabo ea autem ipsam,
+            exercitationem saepe quae aspernatur similique nulla doloribus dolorum, fugit ipsum adipisci soluta ut?
+            Incidunt amet blanditiis quae error vero consectetur nostrum atque, eos, at laboriosam asperiores ut maxime
+            delectus? Doloribus commodi aliquid magni laborum eaque, cumque quod beatae perferendis quibusdam sint illo?
+            Obcaecati quam non magnam praesentium amet aliquid, repellat labore quibusdam aperiam, eligendi dolores
+            pariatur hic inventore cum voluptatem delectus aliquam eos magni! Nulla pariatur eos nemo optio ullam, at
+            aperiam tempora, dolorem dolor praesentium esse! Laudantium facilis voluptatum fugiat vel molestias,
+            explicabo laboriosam, impedit, dolores cupiditate assumenda quisquam et accusamus incidunt? Exercitationem
+            eum quia optio maiores nam odio sequi non dolores ipsam hic modi ducimus eaque commodi ratione natus
+            officiis quis necessitatibus provident aliquid consequatur quam, nemo reprehenderit. Inventore, quod
+            delectus! Voluptatem delectus qui repellat esse modi, ducimus fugiat illo tempore quae cumque, odio nam
+            magni explicabo natus, veniam obcaecati optio assumenda praesentium voluptatum inventore nihil ullam quam.
+            Minus, quibusdam assumenda voluptatum incidunt rerum odit quasi dolorum natus ipsum omnis sed sit,
+            necessitatibus dicta. Alias voluptates cupiditate, doloremque autem explicabo quibusdam voluptate odit eius
+            blanditiis optio doloribus ipsa dolores. Exercitationem est obcaecati adipisci suscipit. Vitae facilis
+            necessitatibus consectetur maxime iusto aliquid debitis natus ipsam id ipsa veritatis, praesentium quo quod?
+            Numquam minus error aperiam omnis impedit temporibus? Ducimus eligendi assumenda odio, unde, magnam
+            architecto adipisci facilis repellat expedita debitis illum molestiae perferendis aliquid autem consequatur
+            et. Consequatur, aut placeat sed iste et vitae laudantium magni unde pariatur veritatis adipisci quasi vel,
+            deserunt sapiente porro officia totam beatae quidem, delectus minima sint consequuntur quaerat! Dolorum
+            recusandae ipsa id, veniam totam mollitia quo tenetur fugit, eaque magni reprehenderit impedit! Impedit quo
+            accusantium dolorem aut sequi tenetur blanditiis iure commodi necessitatibus non esse, quidem assumenda
+            ipsum voluptatibus laboriosam pariatur nihil nobis atque dolore sunt sed alias adipisci? Dolore, quasi,
+            nihil reiciendis voluptatibus assumenda a tempore numquam, temporibus architecto recusandae quibusdam
+            repudiandae amet ipsum nam voluptate veniam corrupti qui dignissimos laborum adipisci. Ut debitis in nihil
+            velit, aliquid voluptates dicta saepe non tempore ipsa ad perferendis quae maxime. Dolorem nam assumenda
+            perferendis quisquam obcaecati ab iusto deserunt rerum quaerat molestiae labore nisi illo adipisci culpa
+            quam, debitis eum blanditiis non ipsa corporis nobis fugit eligendi natus! Perspiciatis quibusdam dolorem
+            iste aliquam voluptatibus unde expedita odit magnam maxime provident quis ipsa dicta corporis quo, error
+            quisquam numquam modi vitae laudantium dignissimos voluptates, distinctio repellendus animi? Doloremque
+            inventore sequi pariatur quos aspernatur. Consequuntur, vero quaerat.
+        </p>
+
+
+        <div class="custom-padding">
+            <div class="container">
+                <h1 class="text-center bg-secondary text-white">Our Team</h1>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="team-area">
+                            <img src="https://i.postimg.cc/qBcmJBrd/1.jpg" alt="">
+                            <div class="socials">
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <h2>
+                                Dave Bishop <span>Principal officer</span></h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-area">
+                            <img src="https://i.postimg.cc/zXXkqnpn/2.jpg" alt="">
+                            <div class="socials">
+                                <a href="#"><i class="fab fa-youtube"></i>
+                                </a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <h2>
+                                Laura Thorn <span>ui / ux designer</span></h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="team-area">
+                            <img src="https://i.postimg.cc/cC1f4S7s/3.jpg" alt="">
+                            <div class="socials">
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-pinterest"></i></a>
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                            </div>
+                            <h2>
+                                Andrew Young <span>Graphics designer</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class='container-fluid mx-auto mt-5 mb-5 col-12' style="text-align: center">
+            <h1 class="hd">Why People Believe in Us</h1>
+            <p><small class="text-muted">Always render more and better service than <br />is expected of you, no matter
+                    what your ask may be.</small></p>
+            <div class="row" style="justify-content: center">
+                <div class="card col-md-3 col-12">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="fa-3x">
+                                <i class="fas fa-rupee-sign" aria-hidden="true"></i>
+                            </div>
+                            <div class="shadow"></div>
+                            <div class="card-title"> We're Worth </div>
+                            <div class="card-subtitle">
+                                <p> <small class="text-muted">We spent thousands of hours on getting and producing books
+                                        that are best for your interests and makes you the best person.
+                                    </small> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-3 col-12 ml-2">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="fa-3x">
+                                <i class="fas fa-video-slash" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-title"> We're Unbiased </div>
+                            <div class="card-subtitle">
+                                <p> <small class="text-muted"> We don't accept ads from anyone. We use actual data to
+                                        match you with your favourite book </small> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-3 col-12 ml-2">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="fa-3x">
+                                <i class="fas fa-smile" aria-hidden="true"></i>
+                            </div>
+                            <div class="card-title"> Our books Guide you </div>
+                            <div class="card-subtitle">
+                                <p> <small class="text-muted">Buying or selling a book is often the confusion work that
+                                        anyone does in their life. we guide you through the process so that you can be
+                                        confident in reaching your best matched book.</small> </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ft">
+                <p class="chk"><small class="text-muted">Still not sure?</small></p>
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#demo">Read All
+                    Testimonials</button>
+
+                <div id="demo" class="collapse">
+                    <section class="section-medium section-arrow--bottom-center section-arrow-primary-color bg-primary"
+                        id="s">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12 text-white text-center">
+                                    <h2 class="section-title "> What Others Say About Us</h2>
+                                    <p class="section-sub-title">
+                                        We are a passionate digital design agency that specializes in beautiful and
+                                        easy-to-
+                                        <br> use digital design &amp; web development services.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="section-primary t-bordered">
+                        <div class="container">
+                            <div class="row testimonial-three testimonial-three--col-three">
+                                <div class="col-md-4 testimonial-three-col">
+                                    <div class="testimonial-inner">
+                                        <div class="testimonial-image" itemprop="image">
+                                            <img width="180" height="180"
+                                                src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                                        </div>
+                                        <div class="testimonial-content">
+                                            <p>
+                                                Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+                                                aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
+                                                a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                                            </p>
+                                        </div>
+                                        <div class="testimonial-meta">
+                                            <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
+                                            <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a
+                                                class="testimonial-link" href="#">Media Wiki</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 testimonial-three-col">
+                                    <div class="testimonial-inner">
+                                        <div class="testimonial-image" itemprop="image">
+                                            <img width="180" height="180"
+                                                src="https://bootdey.com/img/Content/avatar/avatar2.png">
+                                        </div>
+
+                                        <div class="testimonial-content">
+                                            <p>
+                                                In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                                                dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+                                            </p>
+                                        </div>
+
+                                        <div class="testimonial-meta">
+                                            <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
+                                            <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a
+                                                class="testimonial-link" href="#">Media Wiki</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 testimonial-three-col">
+                                    <div class="testimonial-inner">
+                                        <div class="testimonial-image" itemprop="image">
+                                            <img width="180" height="180"
+                                                src="https://bootdey.com/img/Content/avatar/avatar3.png">
+                                        </div>
+                                        <div class="testimonial-content">
+                                            <p>
+                                                Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+                                                aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
+                                                a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                                            </p>
+                                        </div>
+                                        <div class="testimonial-meta">
+                                            <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
+                                            <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a
+                                                class="testimonial-link" href="#">Media Wiki</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 testimonial-three-col">
+                                    <div class="testimonial-inner">
+                                        <div class="testimonial-image" itemprop="image">
+                                            <img width="180" height="180"
+                                                src="https://bootdey.com/img/Content/avatar/avatar4.png">
+                                        </div>
+
+                                        <div class="testimonial-content">
+                                            <p>
+                                                In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                                                dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+                                            </p>
+                                        </div>
+
+                                        <div class="testimonial-meta">
+                                            <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
+                                            <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a
+                                                class="testimonial-link" href="#">Media Wiki</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 testimonial-three-col">
+                                    <div class="testimonial-inner">
+                                        <div class="testimonial-image" itemprop="image">
+                                            <img width="180" height="180"
+                                                src="https://bootdey.com/img/Content/avatar/avatar5.png">
+                                        </div>
+                                        <div class="testimonial-content">
+                                            <p>
+                                                Nulla consequat massa quis enim. Donec pede justo, fringilla vel,
+                                                aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet
+                                                a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                                            </p>
+                                        </div>
+                                        <div class="testimonial-meta">
+                                            <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
+                                            <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a
+                                                class="testimonial-link" href="#">Media Wiki</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 testimonial-three-col">
+                                    <div class="testimonial-inner">
+                                        <div class="testimonial-image" itemprop="image">
+                                            <img width="180" height="180"
+                                                src="https://bootdey.com/img/Content/avatar/avatar6.png">
+                                        </div>
+
+                                        <div class="testimonial-content">
+                                            <p>
+                                                In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
+                                                dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.
+                                            </p>
+                                        </div>
+
+                                        <div class="testimonial-meta">
+                                            <strong class="testimonial-name" itemprop="name">Anna Vandana</strong>
+                                            <span class="testimonial-job-title" itemprop="jobTitle">CEO</span> – <a
+                                                class="testimonial-link" href="#">Media Wiki</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container-fluid p-0">
+            <div class="row text-left">
+                <div class="col-md-5 col-sm-5">
+                    <h4 class="text-light">About us</h4>
+                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum maxime ea
+                        similique
+                        illum corrupti</p>
+                    <p class="pt-4 text-muted">Copyright <b class="text-danger">&copy;2023</b> All rights reserved
+                        ||</span>
+                    </p>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <h4 class="text-light">Newsletter</h4>
+                    <p class="text-muted">Stay Updated</p>
+                    <form class="form-inline">
+                        <div class="col pl-0">
+                            <div class="input-group pr-5">
+                                <input type="text" class="form-control bg-dark text-white"
+                                    id="inlineFormInputGroupUsername2" placeholder="Email">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <h4 class="text-light">Follow Us</h4>
+                    <p class="text-muted">Let us be social</p>
+                    <div class="column text-light">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        fadeOut();
+
+        function loader() {
+            document.querySelector('.loader-container').classList.add('active');
+        }
+
+        function fadeOut() {
+            setTimeout(loader, 4000);
+        }
+    </script>
+    <!-- <script src="./main.js"></script> -->
+
+    <div class="loader-container">
+        <img src="assets/loader-img.gif" alt="Sorry">
+    </div>
+</body>
+
+</html>
